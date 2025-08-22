@@ -58,6 +58,31 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'conf.urls'
 
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    # Token muddati
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),   # access token 5 daqiqa amal qiladi
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),     # refresh token 1 kun amal qiladi
+
+    # Refresh token rotation (har safar yangilansa, eski tokenni blacklist qilish)
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
+
+    # # Token formati
+    # "ALGORITHM": "HS256",       # default
+    # "SIGNING_KEY": SECRET_KEY,  # settings.py dagi SECRET_KEY ishlatiladi
+    # "AUTH_HEADER_TYPES": ("Bearer",),  # Header: Authorization: Bearer <token>
+    #
+    # # User identifikatori
+    # "USER_ID_FIELD": "id",
+    # "USER_ID_CLAIM": "user_id",
+    #
+    # # Sliding token ishlatsa bo‘ladi (qo‘shimcha)
+    # "SLIDING_TOKEN_LIFETIME": timedelta(minutes=5),
+    # "SLIDING_TOKEN_REFRESH_LIFETIME": timedelta(days=1),
+}
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
